@@ -30,8 +30,7 @@ public abstract class BasePage {
     }
 
     protected List<WebElement> findAll(By locator) {
-        return wait.withMessage("Timeout waiting for elements: " + locator)
-                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        return driver.findElements(locator);
     }
 
     protected void click(By locator) {

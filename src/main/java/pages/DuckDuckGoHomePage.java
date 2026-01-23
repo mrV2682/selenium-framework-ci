@@ -7,7 +7,8 @@ public class DuckDuckGoHomePage extends BasePage {
 
     // Locators
     private final By searchBox = By.name("q");
-    private final By resultLinks = By.cssSelector("article[data-testid='result']");
+    private final By resultLinks =
+            By.cssSelector("article[data-testid='result'], div.results--main article");
 
     public void open() {
         openBaseUrl();
@@ -15,9 +16,20 @@ public class DuckDuckGoHomePage extends BasePage {
 
     public void search(String keyword) {
         type(searchBox, keyword);
+        // Human-like delay (VERY IMPORTANT for CI)
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException ignored) {}
+
         find(searchBox).submit();
         //wait until search redirect completed
-        wait.until(ExpectedConditions.urlContains("q="));
+        //wait.until(ExpectedConditions.urlContains("q="));
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.urlContains("q="),
+                ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector("article[data-testid='result'], .results--main")
+                )
+        ));
         //driver.findElement(searchBox).submit();
     }
 
