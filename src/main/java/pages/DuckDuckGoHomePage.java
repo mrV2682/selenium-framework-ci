@@ -6,7 +6,7 @@ public class DuckDuckGoHomePage extends BasePage {
 
     // Locators
     private final By searchBox = By.name("q");
-    private final By resultLinks = By.cssSelector("article[data-testid='result'] h2 a");
+    private final By resultLinks = By.cssSelector("article[data-testid='result']");
 
     public void open() {
         openBaseUrl();

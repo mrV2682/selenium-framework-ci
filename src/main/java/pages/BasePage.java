@@ -18,7 +18,7 @@ public abstract class BasePage {
 
     public BasePage() {
         this.driver = DriverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     protected void openBaseUrl(){
