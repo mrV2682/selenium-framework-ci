@@ -9,7 +9,7 @@
 
     <test name="DuckDuckGo Parallel Tests">
         <classes>
-            <class name="tests.DuckDuckGoSearchTest"/>
+            <class name="tests.WikipediaSearchTest"/>
             <class name="tests.DuckDuckGoTitleTest"/>
         </classes>
     </test>
