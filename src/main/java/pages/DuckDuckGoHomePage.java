@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DuckDuckGoHomePage extends BasePage {
 
@@ -15,6 +16,8 @@ public class DuckDuckGoHomePage extends BasePage {
     public void search(String keyword) {
         type(searchBox, keyword);
         find(searchBox).submit();
+        //wait until search redirect completed
+        wait.until(ExpectedConditions.urlContains("q="));
         //driver.findElement(searchBox).submit();
     }
 

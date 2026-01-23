@@ -18,7 +18,7 @@ public abstract class BasePage {
 
     public BasePage() {
         this.driver = DriverManager.getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     protected void openBaseUrl(){
@@ -30,8 +30,8 @@ public abstract class BasePage {
     }
 
     protected List<WebElement> findAll(By locator) {
-        wait.until(driver -> driver.findElements(locator).size() > 0);
-        return driver.findElements(locator);
+        return wait.withMessage("Timeout waiting for elements: " + locator)
+                .until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     protected void click(By locator) {
