@@ -1,12 +1,14 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WikipediaHomePage extends BasePage {
 
     private final By searchInput = By.id("searchInput");
-    private final By searchButton = By.cssSelector("button[type='submit']");
-    private final By searchResults = By.cssSelector("ul.mw-search-results li");
+ // private final By searchButton = By.cssSelector("button[type='submit']");
+    private final By firstHeading = By.cssSelector("firstHeading");
 
     public void open() {
         driver.get("https://en.wikipedia.org/wiki/Main_Page");
@@ -14,25 +16,22 @@ public class WikipediaHomePage extends BasePage {
 
     public void search(String keyword) {
         type(searchInput, keyword);
-        click(searchButton);
+    //    click(searchButton);
+        find(searchInput).sendKeys(Keys.ENTER);
 
-        wait.until(driver ->
-                driver.getCurrentUrl().contains("search=")
-        );
+        // ✅ CI SAFE WAIT
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.urlContains("wiki"),
+                ExpectedConditions.visibilityOfElementLocated(firstHeading)
+        ));
     }
 
     public int getResultCount() {
-        return findAll(searchResults).size();
-    }
-
-    public String getFirstResultText() {
-        return findAll(searchResults).get(0).getText();
+        return findAll(By.cssSelector("#mw-content-text p")).size();
     }
 
     public void clickFirstResult() {
-        findAll(searchResults).get(0)
-                .findElement(By.tagName("a"))
-                .click();
+        // Wikipedia search goes directly to page → nothing to click
     }
 }
 

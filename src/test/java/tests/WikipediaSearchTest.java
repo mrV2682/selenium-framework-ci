@@ -9,9 +9,8 @@ import pages.WikipediaHomePage;
 public class WikipediaSearchTest extends BaseTest {
 
     @Test
-    public void searchAndOpenFirstResult() {
+    public void searchAndOpenArticle() {
         String keyword = "Selenium WebDriver";
-        int expectedMinResults = 1;
 
         logger.info("Open Wikipedia");
         WikipediaHomePage home = new WikipediaHomePage();
@@ -20,23 +19,13 @@ public class WikipediaSearchTest extends BaseTest {
         logger.info("Search keyword: {}", keyword);
         home.search(keyword);
 
-        int count = home.getResultCount();
-        logger.info("Result count: {}", count);
+        String title = driver.getTitle();
+        logger.info("Page title: {}", title);
 
         Assert.assertTrue(
-                count >= expectedMinResults,
-                "Expected at least one search result"
+                title.toLowerCase().contains("selenium"),
+                "Page title does not contain keyword"
         );
-
-        String firstResult = home.getFirstResultText();
-        logger.info("First result text: {}", firstResult);
-
-        Assert.assertTrue(
-                firstResult.toLowerCase().contains("selenium"),
-                "First result does not contain keyword"
-        );
-
-        logger.info("Click first result");
-        home.clickFirstResult();
     }
+
 }

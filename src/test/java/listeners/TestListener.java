@@ -64,8 +64,10 @@ public class TestListener implements ITestListener {
 
             Path dest = Path.of(
                     "reports",
-                    result.getName() + "_"
-                            + Thread.currentThread().getId() + ".png"
+                    result.getName()
+                            + "_" + Thread.currentThread().getId()
+                            + "_" + System.currentTimeMillis()
+                            + ".png"
             );
 
             Files.createDirectories(dest.getParent());
