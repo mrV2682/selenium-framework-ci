@@ -46,4 +46,8 @@ public abstract class BasePage {
     protected String getText(By locator) {
         return find(locator).getText();
     }
+
+    public String getTitle(){
+        return driver.getTitle();
+    }
 }

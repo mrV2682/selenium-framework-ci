@@ -19,7 +19,7 @@ public class WikipediaSearchTest extends BaseTest {
         logger.info("Search keyword: {}", keyword);
         home.search(keyword);
 
-        String title = driver.getTitle();
+        String title = home.getTitle();
         logger.info("Page title: {}", title);
 
         Assert.assertTrue(
