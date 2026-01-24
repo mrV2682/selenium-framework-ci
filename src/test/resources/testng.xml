@@ -5,6 +5,7 @@
 
     <listeners>
         <listener class-name="listeners.TestListener"/>
+        <listener class-name="retry.RetryTransformer"/>
     </listeners>
 
     <test name="Bing Parallel Tests">

@@ -39,6 +39,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
+
         // 1️ Kiểm tra retry analyzer
         Object retry = result.getMethod().getRetryAnalyzer(result);
 

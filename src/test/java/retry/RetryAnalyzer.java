@@ -10,7 +10,6 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
     @Override
     public boolean retry(ITestResult result) {
-
         if (retryCount < MAX_RETRY) {
             retryCount++;
             System.out.println(
