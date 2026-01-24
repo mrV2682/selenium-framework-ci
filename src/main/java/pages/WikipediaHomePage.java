@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class WikipediaHomePage extends BasePage {
 
-    private final By searchInput = By.id("searchInput");
- // private final By searchButton = By.cssSelector("button[type='submit']");
+    private final By searchInput = By.cssSelector("input[name='search']");
+    // private final By searchButton = By.cssSelector("button[type='submit']");
     private final By firstHeading = By.cssSelector("firstHeading");
 
     public void open() {
