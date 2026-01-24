@@ -4,15 +4,15 @@ import base.BaseTest;
 import core.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.DuckDuckGoHomePage;
+import pages.BingHomePage;
 
-public class DuckDuckGoTitleTest extends BaseTest {
+public class BingTitleTest extends BaseTest {
 
     @Test
-    public void verifyDuckDuckGoTitle() {
-        logger.info("Open DuckDuckGo - Title Test");
+    public void verifyBingTitle() {
+        logger.info("Open Wikipedia - Title Test");
 
-        DuckDuckGoHomePage home = new DuckDuckGoHomePage();
+        BingHomePage home = new BingHomePage();
         home.open();
 
         String title = DriverManager.getDriver().getTitle();
@@ -23,8 +23,8 @@ public class DuckDuckGoTitleTest extends BaseTest {
         );
 
         Assert.assertTrue(
-                title.toLowerCase().contains("duckduckgo"),
-                "Title does not contain DuckDuckGo"
+                title.toLowerCase().contains("bing"),
+                "Title does not contain bing"
         );
     }
 }

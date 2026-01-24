@@ -7,10 +7,10 @@
         <listener class-name="listeners.TestListener"/>
     </listeners>
 
-    <test name="DuckDuckGo Parallel Tests">
+    <test name="Bing Parallel Tests">
         <classes>
-            <class name="tests.WikipediaSearchTest"/>
-            <class name="tests.DuckDuckGoTitleTest"/>
+            <class name="tests.BingSearchTest"/>
+            <class name="tests.BingTitleTest"/>
         </classes>
     </test>
 
