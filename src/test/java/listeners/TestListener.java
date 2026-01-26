@@ -51,7 +51,7 @@ public class TestListener implements ITestListener {
                 ExtentTestManager.getTest()
                         .warning("Test failed but will be retried");
 
-                return; // DỪNG retry
+                return;
             }
         }
 
