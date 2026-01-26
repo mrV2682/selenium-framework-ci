@@ -35,7 +35,11 @@ public class DriverFactory {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
 
                 // ===== CI SAFE OPTIONS =====
-                firefoxOptions.addArguments("-headless");
+                firefoxOptions.addArguments("--headless=new");
+                firefoxOptions.addArguments("--no-sandbox");
+                firefoxOptions.addArguments("--disable-dev-shm-usage");
+                firefoxOptions.addArguments("--disable-gpu");
+                firefoxOptions.addArguments("--window-size=1920,1080");
 
                 driver = new FirefoxDriver(firefoxOptions);
 
