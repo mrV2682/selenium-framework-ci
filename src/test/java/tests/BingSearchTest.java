@@ -12,7 +12,8 @@ public class BingSearchTest extends base.BaseTest {
             dataProviderClass = CsvDataProvider.class)
     public void search_should_return_min_results(
             String keyword,
-            int expectedMin) {
+            int expectedMin)
+    {
 
         BingHomePage home = new BingHomePage();
         home.open();

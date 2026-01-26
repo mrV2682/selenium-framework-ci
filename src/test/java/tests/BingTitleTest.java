@@ -10,7 +10,7 @@ public class BingTitleTest extends BaseTest {
 
     @Test
     public void verifyBingTitle() {
-        logger.info("Open Wikipedia - Title Test");
+        logger.info("Open Bing - Title Test");
 
         BingHomePage home = new BingHomePage();
         home.open();
