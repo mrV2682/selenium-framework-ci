@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Selenium Tests
         run: |
-          ENV=${{ github.event.inputs.env || 'staging'}}
+          ENV=${{ github.event.inputs.env || 'dev'}}
           mvn clean test -Denv=$ENV
 
       - name: Upload TestNG Report
