@@ -10,6 +10,11 @@ on:
     - cron: '0 18 * * *'
 
   workflow_dispatch:
+    inputs:
+      env:
+        description: "Target environment"
+        required: true
+        default: dev
 
 
 jobs:
@@ -35,7 +40,9 @@ jobs:
             maven-${{ runner.os }}-
 
       - name: Run Selenium Tests
-        run: mvn clean test -Denv=dev
+        run: |
+          ENV=${{ github.event.inputs.env || 'dev'}}
+          mvn clean test -Denv=$ENV
 
       - name: Upload TestNG Report
         if: always()
