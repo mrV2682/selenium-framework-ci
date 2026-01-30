@@ -6,19 +6,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class BingSearchResultsPage extends BasePage {
 
     private final By resultsContainer = By.id("b_results");
-    private final By results = By.cssSelector("#b_results li.b_algo");
+    private final By results = By.cssSelector("#b_results > li, #b_results .b_algo");
 
-    public int getResultCount() {
+    public int waitAndGetResultCount() {
 
-        // 1. Chờ container kết quả hiển thị
-        wait.until(ExpectedConditions.visibilityOfElementLocated(resultsContainer));
+        // 1. Wait for container existed (No need visible)
+        wait.until(ExpectedConditions.presenceOfElementLocated(resultsContainer));
 
-        // 2. Chờ CÓ ÍT NHẤT 1 KẾT QUẢ (business condition)
+        // 2. Wait until at least 1 result existed
         wait.until(driver ->
-                driver.findElements(results).size() > 0
+                !driver.findElements(results).isEmpty()
         );
 
-        // 3. Đếm kết quả
-        return findAll(results).size();
+        // 3. Get actual result size
+        return driver.findElements(results).size();
     }
+
 }

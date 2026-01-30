@@ -39,10 +39,16 @@ jobs:
           restore-keys: |
             maven-${{ runner.os }}-
 
-      - name: Run Selenium Tests
+      - name: Run API Tests
         run: |
           ENV=${{ github.event.inputs.env || 'dev'}}
-          mvn clean test -Denv=$ENV
+          mvn clean test -Dgroups=api -Denv=$ENV
+
+      - name: Run UI Tests
+        run: |
+          ENV=${{ github.event.inputs.env || 'dev'}}
+          mvn test -Dgroups=ui -Denv=$ENV
+
 
       - name: Upload TestNG Report
         if: always()

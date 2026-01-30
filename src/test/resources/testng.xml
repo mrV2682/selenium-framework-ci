@@ -8,10 +8,26 @@
         <listener class-name="retry.RetryTransformer"/>
     </listeners>
 
-    <test name="Bing Parallel Tests">
+    <test name="API Tests">
+        <groups>
+            <run>
+                <include name="api"/>
+            </run>
+        </groups>
         <classes>
-            <class name="tests.BingSearchTest"/>
-            <class name="tests.BingTitleTest"/>
+            <class name="api.tests.UserApiTest"/>
+        </classes>
+    </test>
+
+    <test name="UI Tests">
+        <groups>
+            <run>
+                <include name="ui"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ui.tests.BingSearchTest"/>
+            <class name="ui.tests.BingTitleTest"/>
         </classes>
     </test>
 

@@ -1,12 +1,14 @@
-package tests;
+package ui.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BingHomePage;
 import pages.BingSearchResultsPage;
 import utils.CsvDataProvider;
+import base.BaseTest;
 
-public class BingSearchTest extends base.BaseTest {
+@Test(groups = {"ui"})
+public class BingSearchTest extends BaseTest {
 
     @Test(dataProvider = "searchData",
             dataProviderClass = CsvDataProvider.class)
@@ -14,13 +16,15 @@ public class BingSearchTest extends base.BaseTest {
             String keyword,
             int expectedMin)
     {
-
+        //GIVEN: User is on Bing hone page
         BingHomePage home = new BingHomePage();
         home.open();
 
+        //WHEN: User searches by keyword
         BingSearchResultsPage results = home.search(keyword);
 
-        int actual = results.getResultCount();
+        //THEN: Search results should contain at least min results
+        int actual = results.waitAndGetResultCount();
 
         Assert.assertTrue(
                 actual >= expectedMin,

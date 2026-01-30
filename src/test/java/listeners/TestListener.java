@@ -60,6 +60,14 @@ public class TestListener implements ITestListener {
 
         try {
             WebDriver driver = DriverManager.getDriver();
+            /**
+             * If this is API test no need to screenshot
+             */
+            if (driver == null) {
+                test.info("No WebDriver found (API test) - skipping screenshot");
+                return;
+            }
+
             File src = ((TakesScreenshot) driver)
                     .getScreenshotAs(OutputType.FILE);
 

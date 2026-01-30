@@ -1,4 +1,4 @@
-package tests;
+package ui.tests;
 
 import base.BaseTest;
 import core.DriverManager;
@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BingHomePage;
 
+@Test(groups = {"ui"})
 public class BingTitleTest extends BaseTest {
 
     @Test
