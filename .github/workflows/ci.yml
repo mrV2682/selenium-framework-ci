@@ -40,6 +40,8 @@ jobs:
             maven-${{ runner.os }}-
 
       - name: Run API Tests
+        env:
+          GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
         run: |
           ENV=${{ github.event.inputs.env || 'dev'}}
           mvn clean test -Dgroups=api -Denv=$ENV

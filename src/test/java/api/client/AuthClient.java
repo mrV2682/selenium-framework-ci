@@ -54,10 +54,23 @@ public class AuthClient {
     }
 
     private static String loadTokenFromConfig() {
-        if (ApiConfig.API_TOKEN==null || ApiConfig.API_TOKEN.isEmpty()){
-            throw new RuntimeException(
-                    "API token is missing.Please set api.token in config file");
+        //  CI first
+        String envToken = System.getenv("GOREST_TOKEN");
+        if (envToken != null && !envToken.isBlank()) {
+            return envToken;
         }
-        return ApiConfig.API_TOKEN;
+
+        //  Local fallback
+        if (ApiConfig.API_TOKEN != null && !ApiConfig.API_TOKEN.isBlank()) {
+            return ApiConfig.API_TOKEN;
+        }
+
+        //  Fail fast
+        throw new RuntimeException("""
+            GoRest API token is missing.
+            Please set:
+            - GOREST_TOKEN as environment variable (CI), OR
+            - api.token in config-<env>.properties (local)
+        """);
     }
 }
