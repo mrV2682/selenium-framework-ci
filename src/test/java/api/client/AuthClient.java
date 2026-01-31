@@ -56,6 +56,10 @@ public class AuthClient {
     private static String loadTokenFromConfig() {
         //  CI first
         String envToken = System.getenv("GOREST_TOKEN");
+        //for debug only
+        System.out.println(">>> [AuthClient] GOREST_TOKEN from env = "
+                + (envToken == null ? "null" : "***loaded***"));
+
         if (envToken != null && !envToken.isBlank()) {
             return envToken;
         }
