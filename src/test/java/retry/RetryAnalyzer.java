@@ -11,6 +11,11 @@ public class RetryAnalyzer implements IRetryAnalyzer {
     @Override
     public boolean retry(ITestResult result) {
 
+        // Only retry when test FAILED
+        if (result.getStatus() != ITestResult.FAILURE) {
+            return false;
+        }
+
         /**
          * Do not retry for API test
          */
@@ -23,7 +28,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
             }
         }
         /**
-         * Retry onlu for NON-API test
+         * Retry only for NON-API test
          */
         if (retryCount < MAX_RETRY) {
             retryCount++;

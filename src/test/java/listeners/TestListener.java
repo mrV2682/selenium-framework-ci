@@ -43,6 +43,17 @@ public class TestListener implements ITestListener {
         // 1️ Kiểm tra retry analyzer
         Object retry = result.getMethod().getRetryAnalyzer(result);
 
+        // If this is API test then skip retry
+        if (result.getMethod().getGroups() != null) {
+            for (String group : result.getMethod().getGroups()) {
+                if ("api".equalsIgnoreCase(group)) {
+                    ExtentTestManager.getTest()
+                            .fail(result.getThrowable());
+                    return;
+                }
+            }
+        }
+
         if (retry instanceof RetryAnalyzer) {
             RetryAnalyzer retryAnalyzer = (RetryAnalyzer) retry;
 
