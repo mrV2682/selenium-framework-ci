@@ -38,7 +38,11 @@ public class UserApiTest extends BaseApiTest {
 
         // ---------- THEN ----------
         //Verify user is created successfully
-        Assert.assertEquals(createResponse.statusCode(), 201);
+        Assert.assertEquals(
+                createResponse.statusCode(),
+                201,
+                "Response body = " + createResponse.asPrettyString()
+        );
 
         int userId = createResponse.path("id");
         Assert.assertTrue(userId > 0, "User ID was not created");
